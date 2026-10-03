@@ -1,0 +1,42 @@
+default_endpoint: "http://localhost:11434"
+hardware_target: "RTX 2050 (4GB VRAM)"
+max_vram_gb: 4.0
+
+models:
+  code_math:
+    name: "qwen2.5-coder:3b"
+    fallback: "llama3.2:3b"
+    vram_usage_gb: 1.9
+    num_ctx: 2048
+    description: "Code verification, engineering math calculations, formula AST analysis"
+
+  doc_synthesis:
+    name: "llama3.2:3b"
+    fallback: "qwen2.5-coder:3b"
+    vram_usage_gb: 2.2
+    num_ctx: 4096
+    description: "Document synthesis, RAG retrieval Q&A, compliance memo formatting, logic analysis"
+
+  vision_pid:
+    name: "qwen2.5vl:3b"
+    fallback: "llama3.2:3b"
+    vram_usage_gb: 3.1
+    num_ctx: 2048
+    description: "Vision parsing, document inspection, image analysis, visual asset processing"
+
+  diagram_gen:
+    name: "qwen2.5-coder:3b"
+    fallback: "llama3.2:3b"
+    vram_usage_gb: 1.9
+    num_ctx: 2048
+    description: "Architecture & flowchart diagram generation — outputs valid Mermaid.js syntax"
+
+routes:
+  - keywords: ["diagram", "flowchart", "architecture diagram", "draw", "visualize", "sequence diagram", "class diagram", "er diagram", "state diagram", "uml", "system diagram", "network diagram"]
+    target: "diagram_gen"
+  - keywords: ["maop", "calculate", "calculation", "formula", "pressure limit", "math", "equation", "evaluate maop"]
+    target: "code_math"
+  - keywords: ["inspection", "p&id", "scanned", "image", "vision", "ocr", "photo", "corrosion scan"]
+    target: "vision_pid"
+  - keywords: ["query", "question", "what", "how", "explain", "pdf", "document", "rag", "retrieval", "find", "sop", "rules", "compliance", "summary", "synthesis", "standards", "check", "tell", "describe"]
+    target: "doc_synthesis"

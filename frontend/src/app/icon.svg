@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%" fx="50%" fy="45%">
+      <stop offset="0%" stop-color="#003d66" />
+      <stop offset="40%" stop-color="#0a8fb5" />
+      <stop offset="68%" stop-color="#5dd4ff" />
+      <stop offset="100%" stop-color="#cdf5ff" />
+    </radialGradient>
+    
+    <radialGradient id="shine" cx="30%" cy="24%" r="50%" fx="30%" fy="24%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.75)" />
+      <stop offset="50%" stop-color="rgba(255,255,255,0.1)" />
+      <stop offset="70%" stop-color="rgba(255,255,255,0)" />
+    </radialGradient>
+
+    <radialGradient id="shadow" cx="62%" cy="68%" r="55%" fx="62%" fy="68%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.18)" />
+      <stop offset="55%" stop-color="rgba(0,0,0,0)" />
+    </radialGradient>
+
+    <linearGradient id="iris" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#d0f0ff" />
+    </linearGradient>
+
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <g transform="translate(16, 16)">
+    <!-- Base -->
+    <circle cx="240" cy="240" r="240" fill="url(#bg)" />
+    
+    <!-- Inner stroke -->
+    <circle cx="240" cy="240" r="238" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="4" />
+
+    <!-- Noise -->
+    <circle cx="240" cy="240" r="240" fill="black" filter="url(#noise)" style="mix-blend-mode: overlay;" />
+
+    <!-- Shine -->
+    <circle cx="240" cy="240" r="240" fill="url(#shine)" />
+
+    <!-- Bottom shadow -->
+    <circle cx="240" cy="240" r="240" fill="url(#shadow)" style="filter: blur(12px);" />
+
+    <!-- Eyes -->
+    <rect x="130" y="170" width="60" height="100" rx="30" fill="url(#iris)" />
+    <rect x="290" y="170" width="60" height="100" rx="30" fill="url(#iris)" />
+  </g>
+</svg>
